@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Libjpeg picture recovery concept</title>
+  <desc id="desc">A safe visualization of monitored traces correlating with picture reconstruction.</desc>
+  <rect width="720" height="420" rx="18" fill="#0c0d0f"/>
+  <rect x="50" y="52" width="252" height="252" rx="8" fill="#121414" stroke="#45d6c4" stroke-width="2"/>
+  <g fill="#45d6c4">
+    <rect x="80" y="82" width="44" height="44"/>
+    <rect x="130" y="82" width="44" height="44" opacity=".35"/>
+    <rect x="180" y="82" width="44" height="44" opacity=".65"/>
+    <rect x="230" y="82" width="44" height="44" opacity=".25"/>
+    <rect x="80" y="132" width="44" height="44" opacity=".2"/>
+    <rect x="130" y="132" width="44" height="44" opacity=".85"/>
+    <rect x="180" y="132" width="44" height="44" opacity=".45"/>
+    <rect x="230" y="132" width="44" height="44" opacity=".75"/>
+    <rect x="80" y="182" width="44" height="44" opacity=".55"/>
+    <rect x="130" y="182" width="44" height="44" opacity=".3"/>
+    <rect x="180" y="182" width="44" height="44" opacity=".95"/>
+    <rect x="230" y="182" width="44" height="44" opacity=".5"/>
+    <rect x="80" y="232" width="44" height="44" opacity=".85"/>
+    <rect x="130" y="232" width="44" height="44" opacity=".55"/>
+    <rect x="180" y="232" width="44" height="44" opacity=".25"/>
+    <rect x="230" y="232" width="44" height="44" opacity=".9"/>
+  </g>
+  <path d="M330 180H430" stroke="#ff6f61" stroke-width="4" stroke-linecap="round"/>
+  <path d="M414 164L438 180L414 196" fill="none" stroke="#ff6f61" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="470" y="72" width="180" height="215" rx="8" fill="#121414" stroke="#ffc857" stroke-width="2"/>
+  <g stroke="#45d6c4" stroke-width="3" fill="none">
+    <path d="M495 112C512 88 530 136 548 112S584 136 602 112S635 136 648 112"/>
+    <path d="M495 166C512 142 530 190 548 166S584 190 602 166S635 190 648 166"/>
+    <path d="M495 220C512 196 530 244 548 220S584 244 602 220S635 244 648 220"/>
+  </g>
+  <g fill="#ffc857" opacity=".9">
+    <circle cx="510" cy="268" r="5"/>
+    <circle cx="544" cy="268" r="5"/>
+    <circle cx="578" cy="268" r="5"/>
+    <circle cx="612" cy="268" r="5"/>
+  </g>
+  <text x="176" y="342" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Enclaved Libjpeg</text>
+  <text x="560" y="342" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Trace correlation</text>
+  <text x="360" y="386" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">High-level preview only, without operational attack steps</text>
+</svg>

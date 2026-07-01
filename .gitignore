@@ -1,0 +1,8 @@
+# Local preview logs
+website/server.*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

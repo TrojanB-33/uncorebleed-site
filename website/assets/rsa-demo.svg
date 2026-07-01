@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">TLBlur-protected RSA recovery concept</title>
+  <desc id="desc">A safe visualization of passive monitoring in the presence of TLBlur-oriented defenses.</desc>
+  <rect width="720" height="420" rx="18" fill="#0c0d0f"/>
+  <rect x="56" y="76" width="190" height="230" rx="8" fill="#121414" stroke="#8b9397"/>
+  <text x="151" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">TLBlur</text>
+  <text x="151" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">AEX-aware defense</text>
+  <g stroke="#8b9397" stroke-width="2">
+    <path d="M92 210H210"/>
+    <path d="M92 242H210"/>
+    <path d="M92 274H210"/>
+  </g>
+  <rect x="286" y="76" width="170" height="230" rx="8" fill="#121414" stroke="#45d6c4" stroke-width="2"/>
+  <text x="371" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">AEX-free</text>
+  <text x="371" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">passive signal</text>
+  <path d="M318 230C340 200 360 260 382 230S424 260 444 230" fill="none" stroke="#45d6c4" stroke-width="4"/>
+  <rect x="496" y="76" width="168" height="230" rx="8" fill="#121414" stroke="#ff6f61" stroke-width="2"/>
+  <text x="580" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">RSA</text>
+  <text x="580" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">key recovery</text>
+  <g fill="#ff6f61">
+    <circle cx="540" cy="226" r="8"/>
+    <circle cx="580" cy="226" r="8"/>
+    <circle cx="620" cy="226" r="8"/>
+  </g>
+  <path d="M246 190H286M456 190H496" stroke="#ffc857" stroke-width="4" stroke-linecap="round"/>
+  <text x="360" y="360" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Conceptual explanation of why passive monitoring changes the defense surface</text>
+</svg>
