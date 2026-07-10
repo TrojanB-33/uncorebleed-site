@@ -1,27 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
-  <title id="title">TLBlur-protected RSA recovery concept</title>
-  <desc id="desc">A safe visualization of passive monitoring in the presence of TLBlur-oriented defenses.</desc>
-  <rect width="720" height="420" rx="18" fill="#0c0d0f"/>
-  <rect x="56" y="76" width="190" height="230" rx="8" fill="#121414" stroke="#8b9397"/>
-  <text x="151" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">TLBlur</text>
-  <text x="151" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">AEX-aware defense</text>
-  <g stroke="#8b9397" stroke-width="2">
-    <path d="M92 210H210"/>
-    <path d="M92 242H210"/>
-    <path d="M92 274H210"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">TLBlur-protected RSA key recovery concept</title>
+  <desc id="desc">A simplified conceptual diagram showing passive uncore monitoring recovering an RSA key despite TLBlur-oriented protection.</desc>
+  <rect width="760" height="470" rx="16" fill="#fffaf1"/>
+  <g stroke="#d8ccba" stroke-width="1">
+    <path d="M70 86H690M70 146H690M70 206H690M70 266H690M70 326H690"/>
+    <path d="M140 58V356M260 58V356M380 58V356M500 58V356M620 58V356"/>
   </g>
-  <rect x="286" y="76" width="170" height="230" rx="8" fill="#121414" stroke="#45d6c4" stroke-width="2"/>
-  <text x="371" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">AEX-free</text>
-  <text x="371" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">passive signal</text>
-  <path d="M318 230C340 200 360 260 382 230S424 260 444 230" fill="none" stroke="#45d6c4" stroke-width="4"/>
-  <rect x="496" y="76" width="168" height="230" rx="8" fill="#121414" stroke="#ff6f61" stroke-width="2"/>
-  <text x="580" y="128" fill="#f8fbff" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">RSA</text>
-  <text x="580" y="162" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">key recovery</text>
-  <g fill="#ff6f61">
-    <circle cx="540" cy="226" r="8"/>
-    <circle cx="580" cy="226" r="8"/>
-    <circle cx="620" cy="226" r="8"/>
+  <rect x="68" y="106" width="176" height="190" rx="12" fill="#f8f2e8" stroke="#202124" stroke-width="2"/>
+  <text x="156" y="152" fill="#202124" font-family="Georgia, serif" font-size="25" font-weight="700" text-anchor="middle">TLBlur</text>
+  <text x="156" y="184" fill="#5d5c58" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">AEX-aware defense</text>
+  <g fill="none" stroke="#8b2522" stroke-width="3" stroke-linecap="round">
+    <path d="M104 226H208"/>
+    <path d="M104 250H208"/>
+    <path d="M104 274H208"/>
   </g>
-  <path d="M246 190H286M456 190H496" stroke="#ffc857" stroke-width="4" stroke-linecap="round"/>
-  <text x="360" y="360" fill="#a9b4b9" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Conceptual explanation of why passive monitoring changes the defense surface</text>
+  <rect x="292" y="106" width="176" height="190" rx="12" fill="#f8f2e8" stroke="#c7443e" stroke-width="2"/>
+  <text x="380" y="152" fill="#202124" font-family="Georgia, serif" font-size="25" font-weight="700" text-anchor="middle">Uncore</text>
+  <text x="380" y="184" fill="#5d5c58" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">M2M PKT_MATCH</text>
+  <g fill="#c7443e">
+    <circle cx="333" cy="243" r="8"/>
+    <circle cx="380" cy="217" r="8"/>
+    <circle cx="427" cy="252" r="8"/>
+  </g>
+  <path d="M333 243C350 204 365 255 380 217S410 286 427 252" fill="none" stroke="#2d5f7f" stroke-width="4" stroke-linecap="round"/>
+  <rect x="516" y="106" width="176" height="190" rx="12" fill="#f8f2e8" stroke="#202124" stroke-width="2"/>
+  <text x="604" y="152" fill="#202124" font-family="Georgia, serif" font-size="25" font-weight="700" text-anchor="middle">RSA</text>
+  <text x="604" y="184" fill="#5d5c58" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">private key</text>
+  <g fill="#dfaa36">
+    <circle cx="566" cy="246" r="10"/>
+    <rect x="574" y="240" width="56" height="12" rx="6"/>
+    <rect x="620" y="252" width="10" height="18" rx="2"/>
+    <rect x="638" y="252" width="10" height="18" rx="2"/>
+  </g>
+  <path d="M244 202H292M468 202H516" fill="none" stroke="#c7443e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M274 188L292 202L274 216M498 188L516 202L498 216" fill="none" stroke="#c7443e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="380" y="385" fill="#202124" font-family="Georgia, serif" font-size="24" font-weight="700" text-anchor="middle">Passive observation, single decryption, no AEX trigger</text>
+  <text x="380" y="420" fill="#5d5c58" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">A high-level illustration for the public website, not an operational exploit guide.</text>
 </svg>

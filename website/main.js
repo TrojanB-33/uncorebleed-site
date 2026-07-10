@@ -24,7 +24,7 @@ const copyText = async (text) => {
 
 if (copyButton && bibtex) {
   copyButton.addEventListener('click', async () => {
-    const label = copyButton.querySelector('strong');
+    const label = copyButton.querySelector('strong') || copyButton;
     const original = label.textContent;
 
     const copied = await copyText(bibtex.textContent.trim());

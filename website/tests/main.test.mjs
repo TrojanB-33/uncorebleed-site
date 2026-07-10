@@ -55,3 +55,45 @@ test('BibTeX copy button still responds without Clipboard API', async () => {
   assert.deepEqual(removed, [textarea]);
   assert.equal(label.textContent, 'Copied');
 });
+
+test('BibTeX copy button can use direct button text as its label', async () => {
+  const source = readFileSync(join(siteDir, 'main.js'), 'utf8');
+  const listeners = new Map();
+  const copyButton = {
+    textContent: 'Copy BibTeX',
+    querySelector: () => null,
+    addEventListener: (event, handler) => listeners.set(event, handler),
+  };
+  const textarea = {
+    value: '',
+    setAttribute() {},
+    select() {},
+  };
+
+  const context = {
+    document: {
+      querySelector: (selector) => {
+        if (selector === '[data-copy-bibtex]') return copyButton;
+        if (selector === '#bibtex') return { textContent: 'citation text' };
+        return null;
+      },
+      querySelectorAll: () => [],
+      createElement: () => textarea,
+      execCommand: () => true,
+      body: {
+        appendChild() {},
+        removeChild() {},
+      },
+    },
+    navigator: {},
+    window: {
+      setTimeout: () => {},
+    },
+  };
+
+  vm.runInNewContext(source, context);
+
+  await listeners.get('click')();
+
+  assert.equal(copyButton.textContent, 'Copied');
+});

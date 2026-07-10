@@ -13,8 +13,7 @@ test('required static website files exist', () => {
     'index.html',
     'styles.css',
     'main.js',
-    'assets/pipeline.svg',
-    'assets/libjpeg-demo.svg',
+    'assets/uncorebleed-icon.svg',
     'assets/rsa-demo.svg',
     'assets/uncorebleed-paper.pdf',
   ].forEach((relativePath) => {
@@ -25,12 +24,10 @@ test('required static website files exist', () => {
 test('home page contains the required research-site sections', () => {
   const html = readSiteFile('index.html');
   [
-    'hero',
-    'claim',
-    'attack',
-    'demos',
-    'findings',
-    'materials',
+    'intro',
+    'demo',
+    'principles',
+    'team',
     'faq',
   ].forEach((id) => {
     assert.match(html, new RegExp(`id="${id}"`), `section #${id} should exist`);
@@ -39,16 +36,25 @@ test('home page contains the required research-site sections', () => {
   [
     'UncoreBleed',
     'AEX-free',
-    '64 B granularity',
+    'High-resolution',
     'Low-noise',
     'SGX',
     'Uncore PMC',
     'M2M PKT_MATCH',
-    'Libjpeg',
+    '64 B granularity',
     'TLBlur-protected RSA',
+    'Responsible disclosure',
+    'Intel TDX',
   ].forEach((term) => {
     assert.match(html, new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
   });
+});
+
+test('site focuses on one TLBlur-protected RSA demo', () => {
+  const html = readSiteFile('index.html');
+  assert.match(html, /TLBlur-protected RSA/i);
+  assert.match(html, /single decryption/i);
+  assert.doesNotMatch(html, /Libjpeg/i);
 });
 
 test('paper metadata matches the uploaded publication PDF', () => {
@@ -102,7 +108,6 @@ test('release-gated materials are explicit', () => {
   const html = readSiteFile('index.html');
   assert.match(html, /Code[\s\S]*Coming soon/i);
   assert.match(html, /Artifact[\s\S]*Planned release/i);
-  assert.match(html, /Demo materials[\s\S]*Preview only/i);
 });
 
 test('site content has no unfinished planning tokens', () => {
@@ -123,7 +128,6 @@ test('section titles use a restrained editorial scale', () => {
     return Number(match[1]);
   };
 
-  assert.ok(sizeFor('.section h2') <= 3, 'desktop section titles should not dominate the page');
-  assert.match(css, /@media \(max-width: 980px\)[\s\S]*?\.section h2\s*\{[\s\S]*?font-size:\s*2\.2rem/);
-  assert.match(css, /@media \(max-width: 560px\)[\s\S]*?\.section h2\s*\{[\s\S]*?font-size:\s*1\.75rem/);
+  assert.ok(sizeFor('.section h2') <= 2.4, 'desktop section titles should stay compact');
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.section h2\s*\{[\s\S]*?font-size:\s*1\.75rem/);
 });

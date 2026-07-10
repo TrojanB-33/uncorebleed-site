@@ -3,234 +3,143 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="UncoreBleed is a research website for AEX-free, high-resolution, and low-noise side-channel attacks on SGX enclaved execution.">
+  <meta name="description" content="UncoreBleed is an AEX-free, high-resolution, and low-noise side-channel attack on SGX enclaved execution through uncore PMCs.">
   <title>UncoreBleed</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#claim">Skip to content</a>
+  <a class="skip-link" href="#intro">Skip to content</a>
 
   <header class="site-header">
-    <a class="brand" href="#hero" aria-label="UncoreBleed home">
-      <span class="brand-mark" aria-hidden="true"></span>
+    <a class="brand" href="#intro" aria-label="UncoreBleed home">
+      <img src="assets/uncorebleed-icon.svg" alt="" aria-hidden="true">
       <span>UncoreBleed</span>
     </a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="#claim">Claim</a>
-      <a href="#attack">Attack</a>
-      <a href="#demos">Demos</a>
-      <a href="#findings">Findings</a>
-      <a href="#materials">Paper</a>
+      <a href="#intro">About</a>
+      <a href="#demo">Demo</a>
+      <a href="#principles">Principle</a>
+      <a href="#team">Team</a>
       <a href="#faq">FAQ</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Security research</p>
+    <section class="intro section" id="intro">
+      <div class="intro-art">
+        <img src="assets/uncorebleed-icon.svg" alt="UncoreBleed chip icon with a leaking uncore signal">
+      </div>
+      <div class="intro-copy">
+        <p class="eyebrow">SGX uncore side channel</p>
         <h1>UncoreBleed</h1>
-        <p class="hero-subtitle">AEX-free, High-Resolution, and Low-Noise Side-Channel Attacks on SGX Enclaved Execution.</p>
-        <p class="hero-summary">UncoreBleed shows that while SGX suppresses sensitive core PMCs, uncore performance monitoring can still expose enclave-correlated memory behavior.</p>
-        <div class="hero-actions" aria-label="Primary actions">
-          <a class="button primary" href="assets/uncorebleed-paper.pdf">Read the Paper</a>
-          <a class="button secondary" href="#attack">Explore the Attack</a>
-          <a class="button ghost" href="#faq">FAQ</a>
+        <p class="tagline">AEX-free, High-Resolution, and Low-Noise Side-Channel Attacks on SGX Enclaved Execution.</p>
+        <p class="lead">UncoreBleed shows that active uncore PMCs can expose enclave-correlated memory behavior even when sensitive core PMCs are suppressed. The attack can recover secrets from production-mode SGX enclaves, including RSA private keys protected by TLBlur with AEX-Notify.</p>
+        <div class="impact-strip" aria-label="Impact summary">
+          <span>Threat: privileged software observing enclaves</span>
+          <span>Signal: M2M PKT_MATCH uncore event</span>
+          <span>Resolution: 64 B granularity</span>
         </div>
-        <ul class="tag-list" aria-label="Technical highlights">
-          <li>AEX-free</li>
-          <li>64 B granularity</li>
-          <li>Low-noise</li>
-          <li>SGX</li>
-          <li>Uncore PMC</li>
-        </ul>
-      </div>
-      <figure class="hero-visual" aria-label="UncoreBleed monitoring pipeline">
-        <img src="assets/pipeline.svg" alt="UncoreBleed attack pipeline from SGX enclave execution to uncore monitoring and recovered behavior">
-      </figure>
-      <div class="hero-floor" aria-label="Research anchors">
-        <span>Production-mode SGX</span>
-        <span>M2M PKT_MATCH</span>
-        <span>Passive observation</span>
-      </div>
-    </section>
-
-    <section class="section claim" id="claim">
-      <div class="section-kicker">Core claim</div>
-      <h2>SGX performance-monitoring assumptions need a closer look.</h2>
-      <p>Prior work and common assumptions focus on sensitive core PMCs being suppressed during SGX execution. UncoreBleed revisits that boundary and shows that uncore PMCs remain active and can record events correlated with enclave execution.</p>
-      <div class="claim-grid">
-        <article>
-          <span>01</span>
-          <h3>Core PMCs are not the whole story</h3>
-          <p>SGX suppresses sensitive core events, but modern processors also expose uncore monitoring domains outside individual cores.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Uncore events remain observable</h3>
-          <p>Production-mode SGX enclave execution can still correlate with uncore performance events in shared memory subsystems.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Noise can be filtered</h3>
-          <p>The M2M PKT_MATCH event enables address-based monitoring at 64 B granularity, reducing unrelated memory activity.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section attack" id="attack">
-      <div class="section-kicker">Attack pipeline</div>
-      <h2>From enclave execution to recovered behavior.</h2>
-      <p>The attack is presented here as a conceptual research pipeline. The public page intentionally avoids operational exploit instructions and private release material.</p>
-      <img class="wide-asset" src="assets/pipeline.svg" alt="Production SGX enclave to M2M PKT_MATCH to 64 B address-based monitoring to recovered behavior and secrets">
-      <div class="pipeline-notes" aria-label="Pipeline properties">
-        <div>
-          <strong>AEX-free</strong>
-          <span>No page-fault or interrupt-driven observation is required.</span>
+        <div class="material-row" aria-label="Research materials">
+          <a class="button primary" href="assets/uncorebleed-paper.pdf">Read the paper</a>
+          <button class="button secondary" type="button" data-copy-bibtex>Copy BibTeX</button>
+          <span class="status-pill">Code: Coming soon</span>
+          <span class="status-pill">Artifact: Planned release</span>
         </div>
-        <div>
-          <strong>High-resolution</strong>
-          <span>Fine-grained temporal sampling and M2M PMON boxes target selected memory blocks.</span>
-        </div>
-        <div>
-          <strong>Low-noise</strong>
-          <span>PKT_MATCH filters for monitored 64 B memory blocks rather than counting broad system activity.</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section demos" id="demos">
-      <div class="section-kicker">Demonstrations</div>
-      <h2>Two case studies show why passive monitoring matters.</h2>
-      <div class="demo-grid">
-        <article class="demo-card">
-          <img src="assets/libjpeg-demo.svg" alt="High-level Libjpeg picture recovery visualization">
-          <div>
-            <p class="label">Case study 01</p>
-            <h3>Recovering pictures from enclaved Libjpeg</h3>
-            <p>At 64 B granularity, UncoreBleed can distinguish sensitive paths within the same code page and correlate monitored memory behavior with image reconstruction.</p>
-          </div>
-        </article>
-        <article class="demo-card">
-          <img src="assets/rsa-demo.svg" alt="High-level TLBlur-protected RSA recovery visualization">
-          <div>
-            <p class="label">Case study 02</p>
-            <h3>Recovering TLBlur-protected RSA keys</h3>
-            <p>The paper demonstrates RSA private-key recovery from a single decryption even with TLBlur and AEX-Notify deployed, because the monitoring path is passive and AEX-free.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section findings" id="findings">
-      <div class="section-kicker">Technical findings</div>
-      <h2>Precise signals, constrained presentation.</h2>
-      <div class="finding-grid">
-        <article>
-          <h3>Core suppression is incomplete</h3>
-          <p>Sensitive core PMCs stop accumulating during enclave execution, but uncore PMCs can remain active.</p>
-        </article>
-        <article>
-          <h3>M2M PKT_MATCH is filterable</h3>
-          <p>The M2M subsystem supports programmable address filtering that can focus observation on selected memory traffic.</p>
-        </article>
-        <article>
-          <h3>64 B granularity</h3>
-          <p>The primitive distinguishes monitored memory blocks at cache-line scale rather than coarse page scale.</p>
-        </article>
-        <article>
-          <h3>Parallel M2M monitoring</h3>
-          <p>Physical address-to-M2M mapping enables multiple sensitive paths to be monitored across M2M PMON boxes.</p>
-        </article>
-        <article>
-          <h3>AEX-free observation</h3>
-          <p>UncoreBleed does not rely on triggering asynchronous enclave exits, which changes the defense surface.</p>
-        </article>
-        <article>
-          <h3>Defense implications</h3>
-          <p>The findings motivate reevaluating uncore monitoring access in systems that rely on enclave confidentiality.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section materials" id="materials">
-      <div class="section-kicker">Paper materials</div>
-      <h2>Read, cite, and track release-gated materials.</h2>
-      <div class="materials-grid">
-        <a class="material-card active" href="assets/uncorebleed-paper.pdf">
-          <span>Paper</span>
-          <strong>Download PDF</strong>
-        </a>
-        <button class="material-card active" type="button" data-copy-bibtex>
-          <span>BibTeX</span>
-          <strong>Copy citation</strong>
-        </button>
-        <div class="material-card gated">
-          <span>Code</span>
-          <strong>Coming soon</strong>
-        </div>
-        <div class="material-card gated">
-          <span>Artifact</span>
-          <strong>Planned release</strong>
-        </div>
-        <div class="material-card gated">
-          <span>Demo materials</span>
-          <strong>Preview only</strong>
-        </div>
-      </div>
-      <pre class="bibtex" id="bibtex">@misc{chen2026uncorebleed,
+        <pre class="bibtex" id="bibtex">@misc{chen2026uncorebleed,
   title = {UncoreBleed: AEX-free, High-Resolution, and Low-Noise Side-Channel Attacks on SGX Enclaved Execution},
   author = {Chen, Decheng and Zhang, Zhi and Zhang, Zhenkai and Zhang, Xin and Gao, Yansong and Zou, Yi},
   year = {2026},
   note = {Research paper}
 }</pre>
+      </div>
     </section>
 
-    <section class="section faq" id="faq">
-      <div class="section-kicker">Q&A</div>
-      <h2>Short answers for readers with different backgrounds.</h2>
+    <section class="demo section" id="demo">
+      <div class="section-copy">
+        <p class="eyebrow">Demo</p>
+        <h2>Recovering TLBlur-protected RSA keys.</h2>
+        <p>TLBlur with AEX-Notify is designed around attacks that observe chosen execution points through asynchronous enclave exits. UncoreBleed changes the setting: it passively monitors selected DRAM accesses through uncore PMCs and recovers RSA private keys from a single decryption without triggering AEXs.</p>
+      </div>
+      <figure class="demo-figure">
+        <img src="assets/rsa-demo.svg" alt="Conceptual TLBlur-protected RSA key recovery demo">
+        <figcaption>Conceptual overview only. The public site intentionally avoids operational exploit instructions.</figcaption>
+      </figure>
+    </section>
+
+    <section class="principles section" id="principles">
+      <div class="section-copy">
+        <p class="eyebrow">How it works</p>
+        <h2>UncoreBleed turns a shared processor monitor into a precise enclave side channel.</h2>
+        <p>The attack relies on an address-filterable uncore event in the mesh-to-memory subsystem. Instead of interrupting the enclave, it observes memory traffic that remains visible outside the core PMC suppression boundary.</p>
+      </div>
+      <div class="principle-list" aria-label="Main properties">
+        <article>
+          <strong>AEX-free</strong>
+          <p>No page faults, interrupts, or asynchronous enclave exits are needed to collect the signal.</p>
+        </article>
+        <article>
+          <strong>High-resolution</strong>
+          <p>M2M PKT_MATCH enables selected address monitoring at 64 B granularity, exposing cache-line scale behavior.</p>
+        </article>
+        <article>
+          <strong>Low-noise</strong>
+          <p>Hardware address filtering counts targeted memory blocks and suppresses unrelated system activity.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="team section" id="team">
+      <div class="section-copy">
+        <p class="eyebrow">Our team</p>
+        <h2>Who is behind UncoreBleed?</h2>
+      </div>
+      <ul class="team-list">
+        <li><strong>Decheng Chen</strong><span>South China University of Technology</span></li>
+        <li><strong>Zhi Zhang</strong><span>The University of Western Australia</span></li>
+        <li><strong>Zhenkai Zhang</strong><span>Clemson University</span></li>
+        <li><strong>Xin Zhang</strong><span>Shandong University</span></li>
+        <li><strong>Yansong Gao</strong><span>Southeast University</span></li>
+        <li><strong>Yi Zou</strong><span>South China University of Technology</span></li>
+      </ul>
+    </section>
+
+    <section class="faq section" id="faq">
+      <div class="section-copy">
+        <p class="eyebrow">Questions & Answers</p>
+        <h2>FAQ</h2>
+      </div>
       <div class="faq-list">
         <details open>
-          <summary>What is Intel SGX?</summary>
-          <p>Intel SGX is a trusted execution environment that isolates enclave code and data from privileged software such as the operating system and hypervisor.</p>
+          <summary>What is the impact of UncoreBleed?</summary>
+          <p>UncoreBleed shows that enclave secrets can remain exposed through uncore performance monitoring even when SGX suppresses sensitive core PMCs. The paper demonstrates picture reconstruction and TLBlur-protected RSA key recovery; this site focuses on the RSA case.</p>
         </details>
         <details>
-          <summary>What are PMCs?</summary>
-          <p>Performance monitoring counters record hardware events. They are useful for profiling, but some events can become side channels when they correlate with secret-dependent execution.</p>
+          <summary>Who is the attacker?</summary>
+          <p>The attack is relevant to a privileged adversary, such as compromised system software, monitoring SGX enclave execution through architectural performance-monitoring interfaces.</p>
         </details>
         <details>
-          <summary>What is the difference between core and uncore PMCs?</summary>
-          <p>Core PMCs monitor events close to CPU cores. Uncore PMCs monitor shared processor subsystems such as LLC slices, mesh interconnects, M2M bridges, memory controllers, and I/O components.</p>
+          <summary>What is responsible disclosure status?</summary>
+          <p>Responsible disclosure details should be filled in according to the authors' final publication and vendor coordination timeline. Until then, the site avoids releasing exploit code or operational attack instructions.</p>
         </details>
         <details>
-          <summary>What does AEX-free mean?</summary>
-          <p>It means the attack does not rely on causing asynchronous enclave exits. This makes it different from attacks that use page faults or interrupts to observe chosen execution points.</p>
+          <summary>Does UncoreBleed affect Intel TDX?</summary>
+          <p>The current paper studies SGX-capable Xeon server platforms and SGX enclaves. Intel TDX has a different threat model and architecture; the site does not claim a TDX break without dedicated evaluation.</p>
         </details>
         <details>
-          <summary>Why does 64 B granularity matter?</summary>
-          <p>64 B is cache-line scale. Monitoring at this granularity can distinguish fine-grained behavior that page-level channels may merge together.</p>
+          <summary>What are uncore PMCs?</summary>
+          <p>Uncore PMCs monitor shared processor components outside individual cores, such as mesh, memory, and I/O subsystems. UncoreBleed focuses on the M2M PKT_MATCH event.</p>
         </details>
         <details>
-          <summary>Does this break every SGX deployment?</summary>
-          <p>The paper evaluates SGX-capable Xeon server platforms and specific uncore monitoring behavior. Public claims should stay within those assumptions and measurements.</p>
-        </details>
-        <details>
-          <summary>How does this relate to TLBlur and AEX-Notify?</summary>
-          <p>TLBlur with AEX-Notify targets attacks that leverage AEX-driven observation. UncoreBleed is passive and AEX-free, so it remains outside that defense focus.</p>
-        </details>
-        <details>
-          <summary>What should vendors or platform operators consider?</summary>
-          <p>The findings motivate reevaluating access to uncore performance monitoring and its interaction with confidential-computing assumptions.</p>
+          <summary>How should I cite the work?</summary>
+          <p>Use the BibTeX entry in the first section, and update the venue fields once the final publication metadata is available.</p>
         </details>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p><strong>UncoreBleed: AEX-free, High-Resolution, and Low-Noise Side-Channel Attacks on SGX Enclaved Execution</strong></p>
-    <p>Decheng Chen, Zhi Zhang, Zhenkai Zhang, Xin Zhang, Yansong Gao, and Yi Zou.</p>
-    <p>South China University of Technology, The University of Western Australia, Clemson University, Shandong University, and Southeast University.</p>
-    <p>Code, artifact, and detailed demo releases are intentionally gated until the authors approve public material.</p>
+    <p><strong>UncoreBleed</strong>: AEX-free, High-Resolution, and Low-Noise Side-Channel Attacks on SGX Enclaved Execution.</p>
+    <p>Code and artifact links are release-gated until the authors approve public materials.</p>
   </footer>
 
   <script src="main.js"></script>
