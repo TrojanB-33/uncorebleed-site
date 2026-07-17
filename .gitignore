@@ -4,6 +4,9 @@ website/server.*.log
 # Local visual brainstorming sessions
 .superpowers/
 
+# Local Git worktrees
+.worktrees/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
