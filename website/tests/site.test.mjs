@@ -50,6 +50,16 @@ test('home page contains the required research-site sections', () => {
   });
 });
 
+test('principles appear before the recorded demo in document order', () => {
+  const html = readSiteFile('index.html');
+  const principlesOffset = html.indexOf('id="principles"');
+  const demoOffset = html.indexOf('id="demo"');
+
+  assert.ok(principlesOffset >= 0, 'the Principles section should exist');
+  assert.ok(demoOffset >= 0, 'the Demo section should exist');
+  assert.ok(principlesOffset < demoOffset, 'Principles should appear before Demo');
+});
+
 test('site focuses on one TLBlur-protected RSA demo', () => {
   const html = readSiteFile('index.html');
   assert.match(html, /TLBlur-protected RSA/i);
