@@ -1,6 +1,9 @@
 # Local preview logs
 website/server.*.log
 
+# Local visual brainstorming sessions
+.superpowers/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
