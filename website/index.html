@@ -60,9 +60,11 @@
         <h2>Recovering TLBlur-protected RSA keys.</h2>
         <p>TLBlur with AEX-Notify is designed around attacks that observe chosen execution points through asynchronous enclave exits. UncoreBleed changes the setting: it passively monitors selected DRAM accesses through uncore PMCs and recovers RSA private keys from a single decryption without triggering AEXs.</p>
       </div>
-      <figure class="demo-figure">
-        <img src="assets/rsa-demo.svg" alt="Conceptual TLBlur-protected RSA key recovery demo">
-        <figcaption>Conceptual overview only. The public site intentionally avoids operational exploit instructions.</figcaption>
+      <figure class="demo-video">
+        <video class="demo-player" controls muted playsinline preload="metadata" src="assets/uncorebleed-rsa-demo.mp4" aria-label="Recorded demonstration of UncoreBleed recovering a TLBlur-protected RSA private key">
+          Your browser does not support embedded video. <a href="assets/uncorebleed-rsa-demo.mp4">Open the recorded demonstration.</a>
+        </video>
+        <figcaption>Recorded TLBlur-protected RSA key recovery demonstration. This public overview intentionally omits operational attack instructions.</figcaption>
       </figure>
     </section>
 

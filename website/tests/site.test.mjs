@@ -14,7 +14,7 @@ test('required static website files exist', () => {
     'styles.css',
     'main.js',
     'assets/uncorebleed-icon.svg',
-    'assets/rsa-demo.svg',
+    'assets/uncorebleed-rsa-demo.mp4',
     'assets/uncorebleed-paper.pdf',
   ].forEach((relativePath) => {
     assert.equal(existsSync(siteFile(relativePath)), true, `${relativePath} should exist`);
@@ -55,6 +55,28 @@ test('site focuses on one TLBlur-protected RSA demo', () => {
   assert.match(html, /TLBlur-protected RSA/i);
   assert.match(html, /single decryption/i);
   assert.doesNotMatch(html, /Libjpeg/i);
+});
+
+test('RSA demo uses a manually initiated native video player', () => {
+  const html = readSiteFile('index.html');
+  const demoMatch = html.match(/<section class="demo section" id="demo">([\s\S]*?)<\/section>/);
+
+  assert.ok(demoMatch, 'the Demo section should exist');
+
+  const videoMatch = demoMatch[1].match(/<video\b[^>]*>/i);
+  assert.ok(videoMatch, 'the Demo section should contain a video element');
+
+  const videoTag = videoMatch[0];
+  assert.match(videoTag, /src="assets\/uncorebleed-rsa-demo\.mp4"/i);
+  assert.match(videoTag, /\bcontrols\b/i);
+  assert.match(videoTag, /\bmuted\b/i);
+  assert.match(videoTag, /\bplaysinline\b/i);
+  assert.match(videoTag, /preload="metadata"/i);
+  assert.doesNotMatch(videoTag, /\bautoplay\b/i);
+  assert.doesNotMatch(videoTag, /\bloop\b/i);
+
+  const css = readSiteFile('styles.css');
+  assert.match(css, /\.demo-player\s*\{[\s\S]*?width:\s*100%;[\s\S]*?aspect-ratio:\s*16\s*\/\s*9/);
 });
 
 test('paper metadata matches the uploaded publication PDF', () => {
@@ -130,4 +152,9 @@ test('section titles use a restrained editorial scale', () => {
 
   assert.ok(sizeFor('.section h2') <= 2.4, 'desktop section titles should stay compact');
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.section h2\s*\{[\s\S]*?font-size:\s*1\.75rem/);
+});
+
+test('narrow layouts allow the intro grid to shrink without overflow', () => {
+  const css = readSiteFile('styles.css');
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*?\.intro\s*\{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)/);
 });
